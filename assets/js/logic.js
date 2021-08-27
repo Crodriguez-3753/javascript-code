@@ -67,3 +67,27 @@ function getQuestion() {
         questionClick(choicesEl.children[3]);
     });
 }
+
+function questionClick(answerChoice){
+    if(answerChoice.textContent != question[currentQuestionsIndex].answer){
+        // reduce time if wrong
+        time -= 10;
+        //display new time on page
+        feedbackEl.textContent = "Incorrect";
+        // play "wrong" sound effect 
+        sfxWrong.play();
+    }
+    else{
+        //play "right" sound effect
+        feedbackEl.textContent = "Correct";
+        sfxRight.play();
+    }
+    
+    //flash right/wrong feedback on page for half a second
+    feedbackEl.setAttribute("class", "feedback hide");
+    setInterval(function(){
+        feedbackEl.setAttribute("class", "feedback hide");
+    },500);
+
+
+}

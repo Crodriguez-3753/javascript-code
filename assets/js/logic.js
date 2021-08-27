@@ -119,3 +119,53 @@ function quizEnd(){
     questionsEl.setAttribute("class", "hide");
 }
 
+function clockTick() {
+    //update time
+    time--;
+    timerEl.textContent = time;
+
+    // check if user ran out of time
+    if(time <= 0)
+        quizEnd();
+}
+
+function saveHighScore(){
+    //get value of input box
+    var initials = initialsEl.value.toUpperCase();
+    // check if value is not empty
+    if(initials === "") {
+        alert("Iput must not be blank");
+        return;
+    }
+    else if(initials.length > 3){
+        alert("Input must be more than 3 characters");
+        return;
+    }
+    else{
+        //fetch saved scores from localstorage, or if not any, set of empty array
+        var highscores;
+        if(JSON.parse(localStorage.getItem("highscores")) != null)
+            highscores = JSON.parse(window.localStorage.getItem("highscores"));
+        else
+        highscores = []
+        // process new score object for current user
+        var newScore = {
+            initials: initials,
+            score: time
+        };
+        highscores.push(newScore);
+        //save to localstorage
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+        // redirect to next page
+        location.href = "highscores.html";
+    }
+
+    function checkForEnter(event){
+        //check if event key is entered
+        //save highscore
+        if(event.keyCode === 13)
+            saveHighScore();
+    }
+}
+
+

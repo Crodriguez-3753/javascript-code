@@ -89,5 +89,33 @@ function questionClick(answerChoice){
         feedbackEl.setAttribute("class", "feedback hide");
     },500);
 
+    //go to next question
+    currentQuestionsIndex++;
 
+    //Do check if we run out of questions 
+    if(currentQuestionsIndex === questions.length)
+        //end quiz
+        quizEnd();
+        //else
+            // get a question
+            getQuestion();
 }
+
+// end quiz function
+function quizEnd(){
+    //stop timer
+    clearInterval(timerId);
+    timerEl.textContent = time;
+
+    // display end screen
+    var endScreenEl = document.getElementById("final-score");
+    endScreenEl.setAttribute("class", "");
+
+    //display final score
+    var finalScoreEl = document.getElementById("final-score");
+    finalScoreEl.textContent = time;
+
+    //hide question section
+    questionsEl.setAttribute("class", "hide");
+}
+

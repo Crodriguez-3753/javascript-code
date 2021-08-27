@@ -32,3 +32,14 @@ function startQuiz() {
 
     getQuestion();
 }
+
+function getQuestion() {
+    //get current question object from array
+    var currentQuestion = questions[currentQuestionsIndex];
+    //update title with current question
+    questionsEl.children[0].textContent = currentQuestion.setInterval;
+    //clear out any old question choices
+    while (choicesEl.hasChildNodes()){
+        choicesEl.removeChild(choicesEl,lastChild);
+    }
+}

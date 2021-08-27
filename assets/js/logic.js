@@ -42,4 +42,28 @@ function getQuestion() {
     while (choicesEl.hasChildNodes()){
         choicesEl.removeChild(choicesEl,lastChild);
     }
+
+    //loop choices
+    for(var i = 0; i < currentQuestion.choicesEl.length; i++) {
+    
+    // create new button for each choice
+    var choiceButton = document.createElement("button");
+    
+    //display on the page
+    choicesEl.appendChild(choiceButton)
+    }
+
+        // click event listener to each choice
+    choicesEl.children[0].addEventListener("click", function(event){
+        questionClick(choicesEl.children[0]);
+    });
+    choicesEl.children[1].addEventListener("click", function(event){
+        questionClick(choicesEl.children[1]);
+    });
+    choicesEl.children[2].addEventListener("click", function(event){
+        questionClick(choicesEl.children[2]);
+    });
+    choicesEl.children[3].addEventListener("click", function(event){
+        questionClick(choicesEl.children[3]);
+    });
 }

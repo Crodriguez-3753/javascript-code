@@ -20,4 +20,15 @@ function startQuiz() {
     //hide start screen
     var startScreen = document.getElementById("start-screen");
     startScreen.setAttribute("class", "start hide");
+
+    // un-hide questions section
+    questionsEl.setAttribute("class", "");
+    //start timer
+    timerId = setInterval(function(){
+        clockTick();
+    }, 1000);
+    //show starting time
+    timerEl.textContent = time;
+
+    getQuestion();
 }
